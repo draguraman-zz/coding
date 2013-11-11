@@ -1,0 +1,71 @@
+ 
+Monday, October 28, 2013 6:03 PM
+First:
+Design a set like Datastructure
+  - Insert(element)
+  - Remove(element)
+  - element getRandomElement()
+
+element == int64, long
+
+// Random.nextInt(max);
+
+Public Class MySet {
+HashMap<Long, Integer> elements;
+public Long getRandomElement() {  // O(no. of elements)
+Set<Long> set = elements.keySet();  // O(no. of buckets)
+ArrayList<Long> el = new ArrayList<Long>(set);  // O(no. of elements)
+int randomIndex = Random.nextInt(el.size());
+return el.get(randomIndex);
+}
+}
+
+Second:
+
+Public Class Range {
+private int start;
+private int end;
+ 
+public Range (int start, int end) {
+this.start = start;
+this.end = end;
+}
+ 
+public boolean isOverlap(Range range) {
+if ((range.start >= this.start && range.start <= this.end) || (range.end >= this.start && range.end <= this.end)
+|| (range.start <= this.start && range.end >= this.end)){
+return true;
+}
+return false;
+}
+
+public List<Range> insert(List<Range> ranges, Range range) {
+int newStart = range.start, newEnd = range.end;
+boolean inserted = false;
+for (int i = 0; i < ranges.size(); i++) {
+if (!range.isOverlap (ranges.get(i)) && ranges.get(i).start > newStart) {
+ranges.insertAt(i, new Range(newStart, newEnd));
+inserted = true;
+break;
+}
+if (range.isOverlap (ranges.get(i)) {
+newStart = Math.min(ranges.get(i).start, newStart);
+newEnd = Math.max(ranges.get(i).end, newEnd);
+ranges.removeAt(i);
+i--;
+}
+ 
+}
+
+if (!inserted) {
+ranges.add(new Range(newStart, newEnd));
+}
+return ranges;
+}
+ 
+}
+
+[2,8], [11,17], [22,30]  +  [19,20] =>  [2,8], [11,17], [19,20], [22,30]
+                        +  [3,13]  =>  [2,17], [22,30]
+    +  [1,31] => [1,31]
++ [31, 35] =>[2,8], [11,17], [22,30], [31,35]
