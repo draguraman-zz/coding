@@ -1,0 +1,43 @@
+
+
+/* sort two linkedlists ,use less as little memory as possible ,not allowed to copy, can destroy the give list
+
+public LinkedList<int> sortTwoLinkedLists(LinkedList<int> a,LinkedList<int> b)
+{
+    Node x = a.head;
+    Node y = b.head;
+    
+    While(x.next != null || y.next !=null)
+    {
+ 
+         temp=null;       //compare and rearrange in a 
+        if(y.next == null)
+        {//append the rest of the x to this
+            x=x.next
+            }
+            
+        if(x.next==null){
+            //append the rest of the y to this 
+            x.next=y
+            }
+        if(x.value >= y.value){
+            temp=x;
+             x=y
+             y=y.next
+            x.next=temp
+            x=x.next;
+        }
+        else if((y.value > x.value)
+            //b has lesser values append b to a
+            temp=x.next
+            x.next=y
+            x=x.next
+            x.next=temp 
+            }
+
+    return a
+    }
+    
+a: 4, 5, 7, 10
+b 1, 3, 4, 4, 5
+

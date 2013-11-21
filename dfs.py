@@ -9,20 +9,22 @@ class Node:
         	self.left = left
         	self.right = right
 
-	def dfs(self,value):
-        if self.item == value:
-            return true
-        else:
-    	   if self.left:
-             self.left.dfs(value)
-            if self.right:
-                self.right(value)
-            return false
 
-#if __name__ == "__main__":
-	#name,arg1,arg2=argv
-	#b=Node(100)
-	#b.depth()
+	def dfsWithPruning(self,value,map):
+        map.add(hash(self)
+        if self.item == value:
+            return self
+        else:
+
+    	   if self.left and self.left not in map :
+             val=self.left.dfs(value)
+            
+           if self.right and self.right not in map:
+                self.right(value)
+            return self
+
 
 x=Node(100,Node(1,Node(25),Node(34)),Node(6))
-print x.search(6)
+ y =dfsWithPruning(4)
+
+
